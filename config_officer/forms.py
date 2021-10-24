@@ -2,9 +2,9 @@ from django import forms
 from utilities.forms import (
     BootstrapMixin, 
     DynamicModelMultipleChoiceField,
-    StaticSelect2,
+    StaticSelect,
     APISelectMultiple,
-    StaticSelect2Multiple,
+    StaticSelectMultiple,
     TagFilterField
 )
 from .choices import CollectStatusChoices
@@ -27,7 +27,7 @@ class CollectionFilterForm (BootstrapMixin, forms.ModelForm):
     status = forms.ChoiceField(
         choices=BLANK_CHOICE + CollectStatusChoices.CHOICES,
         required=False,
-        label = 'Status'
+        label='Status'
     )
 
     failed_reason = forms.ChoiceField(
@@ -44,12 +44,12 @@ class CollectionFilterForm (BootstrapMixin, forms.ModelForm):
 class TemplateForm(BootstrapMixin, forms.ModelForm):
     name = forms.CharField(
         required=True,
-        label = "Name",
+        label="Name",
     )
 
     description = forms.CharField(
         required=False,
-        label = "Description",
+        label="Description",
     )
 
     class Meta:
@@ -62,12 +62,12 @@ class TemplateForm(BootstrapMixin, forms.ModelForm):
 class ServiceForm(BootstrapMixin, forms.ModelForm):
     name = forms.CharField(
         required=True,
-        label = "Name",
+        label="Name",
     )
 
     description = forms.CharField(
         required=False,
-        label = "Description",
+        label="Description",
     )
 
     class Meta:
@@ -80,12 +80,12 @@ class ServiceForm(BootstrapMixin, forms.ModelForm):
 class ServiceRuleForm(BootstrapMixin, forms.ModelForm):
     service = forms.ModelChoiceField(
         queryset=Service.objects.all(),
-        widget=StaticSelect2()
+        widget=StaticSelect()
     )
 
     description = forms.CharField(
         required=False,
-        label = "Description",
+        label="Description",
     )
 
     device_role = DynamicModelMultipleChoiceField(
@@ -104,7 +104,7 @@ class ServiceRuleForm(BootstrapMixin, forms.ModelForm):
 
     template = forms.ModelChoiceField(
         queryset=Template.objects.order_by('name'),
-        widget=StaticSelect2()
+        widget=StaticSelect()
     )    
 
     class Meta:
@@ -117,12 +117,12 @@ class ServiceRuleForm(BootstrapMixin, forms.ModelForm):
 class ServiceMappingForm(BootstrapMixin, forms.ModelForm):
     service = forms.ModelChoiceField(
         queryset=Service.objects.all(),
-        widget=StaticSelect2()
+        widget=StaticSelect()
     )
 
     device = forms.ModelChoiceField(
         queryset=Device.objects.all(),
-        widget=StaticSelect2()
+        widget=StaticSelect()
     )
 
     class Meta:
@@ -184,7 +184,7 @@ class ServiceMappingFilterForm(BootstrapMixin, forms.ModelForm):
         label='Status',
         choices=ServiceComplianceChoices,
         required=False,
-        widget=StaticSelect2Multiple()
+        widget=StaticSelectMultiple()
     )
 
     tag = TagFilterField(model)
