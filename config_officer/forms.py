@@ -97,9 +97,7 @@ class ServiceRuleForm(BootstrapMixin, forms.ModelForm):
         queryset=DeviceType.objects.all(),
         required=False,
         label='Model',
-        display_field="model",
-        widget=APISelectMultiple(            
-        )
+        widget=APISelectMultiple()
     )        
 
     template = forms.ModelChoiceField(
@@ -175,7 +173,6 @@ class ServiceMappingFilterForm(BootstrapMixin, forms.ModelForm):
         queryset=DeviceType.objects.all(),
         required=False,
         label='Model',
-        display_field="model",
         widget=APISelectMultiple(
             
         )
